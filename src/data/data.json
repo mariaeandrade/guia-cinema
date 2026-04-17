@@ -1,48 +1,129 @@
 {
-    "filmes": [
-        {
-            "id": "1",
-            "nome": "Oppenheimer",
-            "descricao": "O físico J. Robert Oppenheimer trabalha com uma equipe de cientistas durante o Projeto Manhattan, levando ao desenvolvimento da bomba atômica.",
-            "imagem": "https://image.tmdb.org/t/p/w500/8GxvA9zDZ9ajlsj7LpXvS7uvySX.jpg",
-            "categoria": "Histórico / Drama"
-        },
-        {
-            "id": "2",
-            "nome": "Dune",
-            "descricao": "Paul Atreides lidera uma rebelião contra o imperador e os Harkonnen em um planeta desértico rico em especiarias.",
-            "imagem": "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
-            "categoria": "Ficção Científica"
-        },
-        {
-            "id": "3",
-            "nome": "Top Gun: Maverick",
-            "descricao": "Pete Mitchell volta como instrutor de voo, treinando uma nova geração de pilotos para uma missão perigosa.",
-            "imagem": "https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg",
-            "categoria": "Ação / Drama"
-        }
-    ],
-    "series": [
-        {
-            "id": "4",
-            "nome": "The Last of Us",
-            "descricao": "Vinte anos após a destruição da civilização moderna, Joel e Ellie tentam sobreviver em um mundo pós-apocalíptico.",
-            "imagem": "https://image.tmdb.org/t/p/w500/uKvH561NE9s9Zas9UMNuGExp983.jpg",
-            "categoria": "Pós-apocalíptico"
-        },
-        {
-            "id": "5",
-            "nome": "Stranger Things",
-            "descricao": "Um grupo de amigos em uma pequena cidade enfrenta acontecimentos misteriosos e forças sobrenaturais.",
-            "imagem": "https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg",
-            "categoria": "Ficção Científica / Terror"
-        },
-        {
-            "id": "6",
-            "nome": "The Mandalorian",
-            "descricao": "Um caçador de recompensas solitário navega pelos confins da galáxia, longe da autoridade da Nova República.",
-            "imagem": "https://image.tmdb.org/t/p/w500/eU1i6eHXlzMOlEq0ku1Rzq7Y4wA.jpg",
-            "categoria": "Ficção Científica / Aventura"
-        }
-    ]
+  "api": {
+    "version": "1.0.0",
+    "title": "Movies & Series API",
+    "baseUrl": "/api/v1",
+    "endpoints": {
+      "filmes": {
+        "listar": "GET /filmes",
+        "obter": "GET /filmes/:id",
+        "criar": "POST /filmes",
+        "atualizar": "PUT /filmes/:id",
+        "deletar": "DELETE /filmes/:id"
+      },
+      "series": {
+        "listar": "GET /series",
+        "obter": "GET /series/:id",
+        "criar": "POST /series",
+        "atualizar": "PUT /series/:id",
+        "deletar": "DELETE /series/:id"
+      }
+    }
+  },
+  "filmes": [
+    {
+      "id": 1,
+      "titulo": "Oppenheimer",
+      "descricao": "O físico J. Robert Oppenheimer trabalha com uma equipe de cientistas durante o Projeto Manhattan, levando ao desenvolvimento da bomba atômica.",
+      "poster": "https://image.tmdb.org/t/p/w500/8GxvA9zDZ9ajlsj7LpXvS7uvySX.jpg",
+      "backdrop": "https://image.tmdb.org/t/p/w1280/...",
+      "categorias": ["Histórico", "Drama"],
+      "duracao": 180,
+      "anoLancamento": 2023,
+      "classificacao": 8.5,
+      "diretor": "Christopher Nolan",
+      "elenco": ["Cillian Murphy", "Robert Downey Jr."],
+      "emCartaz": false,
+      "criadoEm": "2023-10-21T00:00:00Z",
+      "atualizadoEm": "2023-10-21T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "titulo": "Dune",
+      "descricao": "Paul Atreides lidera uma rebelião contra o imperador e os Harkonnen em um planeta desértico rico em especiarias.",
+      "poster": "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+      "backdrop": "https://image.tmdb.org/t/p/w1280/...",
+      "categorias": ["Ficção Científica", "Aventura"],
+      "duracao": 166,
+      "anoLancamento": 2021,
+      "classificacao": 8.0,
+      "diretor": "Denis Villeneuve",
+      "elenco": ["Timothée Chalamet", "Zendaya"],
+      "emCartaz": false,
+      "criadoEm": "2021-10-22T00:00:00Z",
+      "atualizadoEm": "2021-10-22T00:00:00Z"
+    },
+    {
+      "id": 3,
+      "titulo": "Top Gun: Maverick",
+      "descricao": "Pete Mitchell volta como instrutor de voo, treinando uma nova geração de pilotos para uma missão perigosa.",
+      "poster": "https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg",
+      "backdrop": "https://image.tmdb.org/t/p/w1280/...",
+      "categorias": ["Ação", "Drama"],
+      "duracao": 131,
+      "anoLancamento": 2022,
+      "classificacao": 8.3,
+      "diretor": "Joseph Kosinski",
+      "elenco": ["Tom Cruise", "Miles Teller"],
+      "emCartaz": false,
+      "criadoEm": "2022-05-27T00:00:00Z",
+      "atualizadoEm": "2022-05-27T00:00:00Z"
+    }
+  ],
+  "series": [
+    {
+      "id": 4,
+      "titulo": "The Last of Us",
+      "descricao": "Vinte anos após a destruição da civilização moderna, Joel e Ellie tentam sobreviver em um mundo pós-apocalíptico.",
+      "poster": "https://image.tmdb.org/t/p/w500/uKvH561NE9s9Zas9UMNuGExp983.jpg",
+      "backdrop": "https://image.tmdb.org/t/p/w1280/...",
+      "categorias": ["Drama", "Pós-apocalíptico"],
+      "temporadas": 1,
+      "episodios": 9,
+      "anoInicio": 2023,
+      "anoFim": null,
+      "emExibicao": true,
+      "classificacao": 8.8,
+      "criador": "Craig Mazin",
+      "elenco": ["Pedro Pascal", "Bella Ramsey"],
+      "criadoEm": "2023-01-16T00:00:00Z",
+      "atualizadoEm": "2023-01-16T00:00:00Z"
+    },
+    {
+      "id": 5,
+      "titulo": "Stranger Things",
+      "descricao": "Um grupo de amigos em uma pequena cidade enfrenta acontecimentos misteriosos e forças sobrenaturais.",
+      "poster": "https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg",
+      "backdrop": "https://image.tmdb.org/t/p/w1280/...",
+      "categorias": ["Ficção Científica", "Terror"],
+      "temporadas": 4,
+      "episodios": 42,
+      "anoInicio": 2016,
+      "anoFim": 2025,
+      "emExibicao": false,
+      "classificacao": 8.7,
+      "criador": "The Duffer Brothers",
+      "elenco": ["Winona Ryder", "David Harbour"],
+      "criadoEm": "2016-07-15T00:00:00Z",
+      "atualizadoEm": "2025-11-01T00:00:00Z"
+    },
+    {
+      "id": 6,
+      "titulo": "The Mandalorian",
+      "descricao": "Um caçador de recompensas solitário navega pelos confins da galáxia, longe da autoridade da Nova República.",
+      "poster": "https://image.tmdb.org/t/p/w500/eU1i6eHXlzMOlEq0ku1Rzq7Y4wA.jpg",
+      "backdrop": "https://image.tmdb.org/t/p/w1280/...",
+      "categorias": ["Ficção Científica", "Aventura"],
+      "temporadas": 3,
+      "episodios": 24,
+      "anoInicio": 2019,
+      "anoFim": null,
+      "emExibicao": true,
+      "classificacao": 8.7,
+      "criador": "Jon Favreau",
+      "elenco": ["Pedro Pascal", "Grogu"],
+      "criadoEm": "2019-11-12T00:00:00Z",
+      "atualizadoEm": "2023-03-29T00:00:00Z"
+    }
+  ]
 }
