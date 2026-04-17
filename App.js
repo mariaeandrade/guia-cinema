@@ -8,43 +8,41 @@ import { Ionicons } from '@expo/vector-icons';
 import { PaperProvider } from 'react-native-paper';
 
 // Importando Telas e Dados
-import ListaScreen from './src/screens/ListaScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import CatalogoScreen from './src/screens/CatalogoScreen';
 import DetalhesScreen from './src/screens/DetalheScreen';
-import { SobreScreen, ContatoScreen } from './src/screens/InfoScreens';
+import { MenuScreen, SobreScreen, ContatoScreen } from './src/screens/InfoScreens';
 import db from './src/data/data.json';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
-// Stack para Filmes
-function MovieStack() {
+// Stack para Home
+function HomeStack() {
     return (
         <Stack.Navigator
             screenOptions={{
-                headerStyle: { backgroundColor: '#1e1e1e' },
-                headerTintColor: '#fff',
+                headerShown: false,
             }}>
-            <Stack.Screen name="FilmesLista" options={{ title: 'Catálogo de Filmes' }}>
-                {(props) => <ListaScreen {...props} data={db.filmes} titulo="Filmes" />}
+            <Stack.Screen name="HomeScreen" options={{ title: 'Início' }}>
+                {(props) => <HomeScreen {...props} data={db} />}
             </Stack.Screen>
-            <Stack.Screen name="Detalhes" component={DetalhesScreen} />
         </Stack.Navigator>
     );
 }
 
-// Stack para Séries
-function SeriesStack() {
+// Stack para Catálogo
+function CatalogoStack() {
     return (
         <Stack.Navigator
             screenOptions={{
-                headerStyle: { backgroundColor: '#1e1e1e' },
-                headerTintColor: '#fff',
+                headerShown: false,
             }}>
-            <Stack.Screen name="SeriesLista" options={{ title: 'Catálogo de Séries' }}>
-                {(props) => <ListaScreen {...props} data={db.series} titulo="Séries" />}
+            <Stack.Screen name="CatalogoScreen" options={{ title: 'Catálogo' }}>
+                {(props) => <CatalogoScreen {...props} data={db} />}
             </Stack.Screen>
-            <Stack.Screen name="Detalhes" component={DetalhesScreen} />
+            <Stack.Screen name="Detalhes" component={DetalhesScreen} options={{ title: 'Detalhes' }} />
         </Stack.Navigator>
     );
 }
@@ -55,43 +53,92 @@ function TabNavigator() {
         <Tab.Navigator
             screenOptions={{
                 headerShown: false,
-                tabBarActiveTintColor: 'tomato',
-                tabBarStyle: { backgroundColor: '#1e1e1e' },
+                tabBarActiveTintColor: '#FFD700',
+                tabBarInactiveTintColor: '#666',
+                tabBarStyle: {
+                    backgroundColor: '#3a3a50',
+                    borderTopColor: '#2a2a3e',
+                    borderTopWidth: 1,
+                },
             }}>
             <Tab.Screen
-                name="Filmes"
-                component={MovieStack}
+                name="Início"
+                component={HomeStack}
                 options={{
-                    tabBarIcon: ({ color }) => <Ionicons name="film" size={24} color={color} />,
+                    tabBarIcon: ({ color }) => <Ionicons name="home" size={24} color={color} />,
+                    tabBarLabel: 'Início',
                 }}
             />
             <Tab.Screen
-                name="Séries"
-                component={SeriesStack}
+                name="Catálogo"
+                component={CatalogoStack}
                 options={{
-                    tabBarIcon: ({ color }) => <Ionicons name="tv" size={24} color={color} />,
+                    tabBarIcon: ({ color }) => <Ionicons name="list" size={24} color={color} />,
+                    tabBarLabel: 'Catálogo',
                 }}
             />
         </Tab.Navigator>
     );
 }
 
-// Root Navigation (Drawer envolvendo tudo)
+// Root Navigation com Drawer
 export default function App() {
     return (
         <PaperProvider>
             <NavigationContainer>
                 <Drawer.Navigator
                     screenOptions={{
-                        headerStyle: { backgroundColor: '#1e1e1e' },
-                        headerTintColor: '#fff',
-                        drawerStyle: { backgroundColor: '#1e1e1e' },
-                        drawerActiveTintColor: 'tomato',
+                        headerShown: false,
+                        drawerStyle: {
+                            backgroundColor: '#2a2a3e',
+                            width: '80%',
+                        },
+                        drawerActiveTintColor: '#FFD700',
                         drawerInactiveTintColor: '#ccc',
+                        drawerContentStyle: {
+                            backgroundColor: '#2a2a3e',
+                        },
                     }}>
-                    <Drawer.Screen name="Início" component={TabNavigator} />
-                    <Drawer.Screen name="Sobre" component={SobreScreen} />
-                    <Drawer.Screen name="Contato" component={ContatoScreen} />
+                    <Drawer.Screen
+                        name="TabNavigator"
+                        component={TabNavigator}
+                        options={{
+                            drawerLabel: 'Início',
+                            drawerIcon: ({ color }) => (
+                                <Ionicons name="home" size={24} color={color} />
+                            ),
+                        }}
+                    />
+                    <Drawer.Screen
+                        name="Menu"
+                        component={MenuScreen}
+                        options={{
+                            drawerLabel: 'Perfil',
+                            drawerIcon: ({ color }) => (
+                                <Ionicons name="person" size={24} color={color} />
+                            ),
+                        }}
+                    />
+                    <Drawer.Screen
+                        name="Sobre"
+                        component={SobreScreen}
+                        options={{
+                            drawerLabel: 'Sobre',
+                            drawerIcon: ({ color }) => (
+                                <Ionicons name="information-circle" size={24} color={color} />
+                            ),
+                        }}
+                    />
+                    <Drawer.Screen
+                        name="Contato"
+                        component={ContatoScreen}
+                        options={{
+                            drawerLabel: 'Contato',
+                            drawerIcon: ({ color }) => (
+                                <Ionicons name="mail" size={24} color={color} />
+                            ),
+                        }}
+                    />
                 </Drawer.Navigator>
             </NavigationContainer>
         </PaperProvider>

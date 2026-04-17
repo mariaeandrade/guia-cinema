@@ -3,22 +3,36 @@ import { View, StyleSheet, FlatList, TextInput, TouchableOpacity, Image } from '
 import { Title, Paragraph, Chip } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function ListaScreen({ navigation, data, titulo }) {
+export default function CatalogoScreen({ navigation, data }) {
     const [filtro, setFiltro] = useState('TODOS');
     const [busca, setBusca] = useState('');
 
-    const dadosFiltrados = data.filter((item) => {
+    // Combinar filmes e séries com tipo
+    const todosConteudos = [
+        ...data.filmes.map(item => ({ ...item, tipo: 'Filme' })),
+        ...data.series.map(item => ({ ...item, tipo: 'Série' })),
+    ];
+
+    // Filtrar por tipo e busca
+    const dadosFiltrados = todosConteudos.filter((item) => {
         const match = item.nome.toLowerCase().includes(busca.toLowerCase());
         if (filtro === 'TODOS') return match;
-        return match; // Você pode adicionar lógica de categoria aqui
+        if (filtro === 'FILMES') return match && item.tipo === 'Filme';
+        if (filtro === 'SÉRIES') return match && item.tipo === 'Série';
+        return match;
     });
 
     return (
         <View style={styles.container}>
             {/* Header com Catálogo */}
             <View style={styles.headerSection}>
-                <Title style={styles.title}>CATÁLOGO</Title>
-                
+                <View style={styles.headerTop}>
+                    <Title style={styles.title}>CATÁLOGO</Title>
+                    <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                        <Ionicons name="menu" size={28} color="#fff" />
+                    </TouchableOpacity>
+                </View>
+
                 {/* Barra de Busca */}
                 <View style={styles.searchContainer}>
                     <Ionicons name="search" size={20} color="#888" style={styles.searchIcon} />
@@ -63,7 +77,12 @@ export default function ListaScreen({ navigation, data, titulo }) {
                     <TouchableOpacity
                         style={styles.card}
                         onPress={() => navigation.navigate('Detalhes', { item })}>
-                        <Image source={{ uri: item.imagem }} style={styles.poster} />
+                        <View style={styles.posterContainer}>
+                            <Image source={{ uri: item.imagem }} style={styles.poster} />
+                            <Chip style={styles.typeBadge} textStyle={styles.typeBadgeText}>
+                                {item.tipo}
+                            </Chip>
+                        </View>
                         <View style={styles.cardContent}>
                             <Paragraph style={styles.cardTitle} numberOfLines={2}>
                                 {item.nome}
@@ -78,13 +97,19 @@ export default function ListaScreen({ navigation, data, titulo }) {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#2a2a3e', paddingTop: 20 },
-    headerSection: { paddingHorizontal: 15, marginBottom: 20 },
-    title: { color: '#fff', fontSize: 28, fontWeight: 'bold', marginBottom: 15, textAlign: 'center' },
+    container: { flex: 1, backgroundColor: '#2a2a3e', paddingTop: 0 },
+    headerSection: { paddingHorizontal: 15, paddingVertical: 15, backgroundColor: '#3a3a50' },
+    headerTop: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 15,
+    },
+    title: { color: '#fff', fontSize: 28, fontWeight: 'bold' },
     searchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#3a3a50',
+        backgroundColor: '#2a2a3e',
         borderRadius: 25,
         paddingHorizontal: 15,
         marginBottom: 15,
@@ -107,9 +132,17 @@ const styles = StyleSheet.create({
     filterButtonActive: { backgroundColor: '#FFD700', borderColor: '#FFD700' },
     filterText: { color: '#999', fontSize: 12, fontWeight: 'bold' },
     filterTextActive: { color: '#000', fontWeight: 'bold' },
-    row: { justifyContent: 'space-between', paddingHorizontal: 10, marginBottom: 15 },
-    card: { width: '48%', marginHorizontal: 5 },
+    row: { justifyContent: 'space-between', paddingHorizontal: 10, marginBottom: 15, marginTop: 15 },
+    card: { width: '48%' },
+    posterContainer: { position: 'relative' },
     poster: { width: '100%', height: 180, borderRadius: 10, backgroundColor: '#3a3a50' },
+    typeBadge: {
+        position: 'absolute',
+        top: 8,
+        right: 8,
+        backgroundColor: '#FF6B6B',
+    },
+    typeBadgeText: { color: '#fff', fontSize: 10 },
     cardContent: { marginTop: 8 },
     cardTitle: { color: '#fff', fontSize: 12, fontWeight: '600' },
 });
