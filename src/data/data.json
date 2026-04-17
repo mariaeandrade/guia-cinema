@@ -1,0 +1,48 @@
+{
+    "filmes": [
+        {
+            "id": "1",
+            "nome": "Oppenheimer",
+            "descricao": "O físico J. Robert Oppenheimer trabalha com uma equipe de cientistas durante o Projeto Manhattan, levando ao desenvolvimento da bomba atômica.",
+            "imagem": "https://image.tmdb.org/t/p/w500/8GxvA9zDZ9ajlsj7LpXvS7uvySX.jpg",
+            "categoria": "Histórico / Drama"
+        },
+        {
+            "id": "2",
+            "nome": "Dune",
+            "descricao": "Paul Atreides lidera uma rebelião contra o imperador e os Harkonnen em um planeta desértico rico em especiarias.",
+            "imagem": "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+            "categoria": "Ficção Científica"
+        },
+        {
+            "id": "3",
+            "nome": "Top Gun: Maverick",
+            "descricao": "Pete Mitchell volta como instrutor de voo, treinando uma nova geração de pilotos para uma missão perigosa.",
+            "imagem": "https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg",
+            "categoria": "Ação / Drama"
+        }
+    ],
+    "series": [
+        {
+            "id": "4",
+            "nome": "The Last of Us",
+            "descricao": "Vinte anos após a destruição da civilização moderna, Joel e Ellie tentam sobreviver em um mundo pós-apocalíptico.",
+            "imagem": "https://image.tmdb.org/t/p/w500/uKvH561NE9s9Zas9UMNuGExp983.jpg",
+            "categoria": "Pós-apocalíptico"
+        },
+        {
+            "id": "5",
+            "nome": "Stranger Things",
+            "descricao": "Um grupo de amigos em uma pequena cidade enfrenta acontecimentos misteriosos e forças sobrenaturais.",
+            "imagem": "https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg",
+            "categoria": "Ficção Científica / Terror"
+        },
+        {
+            "id": "6",
+            "nome": "The Mandalorian",
+            "descricao": "Um caçador de recompensas solitário navega pelos confins da galáxia, longe da autoridade da Nova República.",
+            "imagem": "https://image.tmdb.org/t/p/w500/eU1i6eHXlzMOlEq0ku1Rzq7Y4wA.jpg",
+            "categoria": "Ficção Científica / Aventura"
+        }
+    ]
+}
